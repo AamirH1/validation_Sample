@@ -1,0 +1,73 @@
+{
+  "active_profile": "UserGuide",
+  "validation_profiles": {
+    "UserGuide": {
+      "doc_type": "User Guide",
+      "validation_mode": "SECTIONS",
+      "debug_mode": false,
+      "input_docx_filename": "generated_doc.docx",
+      "raw_text_input_filename": "claude.docx",
+      "min_content_length": 50,
+      "max_fuzzy_matches": 3,
+      "parent_section_headings": [
+        "Project Name",
+        "Introduction and Overview",
+        "Key Features and Capabilities",
+        "Getting Started",
+        "Account Creation and Sign-In",
+        "Core Functionality",
+        "Advanced Configuration Options",
+        "Troubleshooting"
+      ],
+      "mandatory_section_headings": [
+        "Introduction and Overview",
+        "Key Features and Capabilities",
+        "Getting Started",
+        "Core Functionality",
+        "Help",
+        "Troubleshooting"
+      ],
+      "prompts": {
+        "sections_validation": {
+          "system_prompt": "You are an expert technical document validator. Analyze the provided content carefully and respond with exactly one of the specified response formats.",
+          "user_prompt_template": "You are validating the content of the '{heading}' section of a {doc_type}.\\n\\nSection text ({word_count} words, {sentence_count} sentences):\\n{text}\\n\\nSection tables ({table_count} table(s)):\\n{tables}\\n\\nContent Analysis:\\n- Contains lists: {has_lists}\\n- Contains numbers/data: {has_numbers}\\n- Contains technical terms: {has_technical_terms}\\n- Quality score: {quality_score}/100\\n\\nAnalyze this section for:\\n1. Content availability: Is there meaningful, substantial content (not just placeholder text)?\\n2. Relevance: Is the provided content specifically relevant to the heading '{heading}', or is it unrelated/filler?\\n3. Completeness: Does the content adequately cover what would be expected in a '{heading}' section?\\n\\nReply with EXACTLY one of these responses:\\n- \\\"{heading}: Content is comprehensive and relevant.\\\"\\n- \\\"{heading}: Content is available but lacks relevance to {heading}.\\\"\\n- \\\"{heading}: Content is available but incomplete for {heading}.\\\"\\n- \\\"{heading}: Missing content for {heading}.\\\""
+        },
+        "raw_text_validation": {
+          "system_prompt": "You are an expert document analyst. Analyze the provided text carefully and respond with exactly one of the specified response formats.",
+          "user_prompt_template": "You are an expert document analyst. Your task is to determine if a given block of raw text contains sufficient and relevant information to create a specific section of a {doc_type}.\\n\\nThe target section to be created is:\\n'{heading}'\\n\\nThe raw text provided is:\\n---\\n{text}\\n---\\n\\nBased on the raw text, analyze its content for the following:\\n1. Relevance: Is there information in the text that is directly related to the target section '{heading}'?\\n2. Sufficiency: Is there enough detail in the text to write a meaningful, non-trivial section?\\n\\nReply with EXACTLY one of the following responses:\\n- \\\"{heading}: Sufficient and relevant information is present to create this section.\\\"\\n- \\\"{heading}: Some relevant information is present, but it is likely incomplete.\\\"\\n- \\\"{heading}: The text contains little to no relevant information for this section.\\\"\\n- \\\"{heading}: The text is too generic or lacks the specific details needed for this section.\\\""
+        }
+      }
+    },
+    "SOP": {
+      "doc_type": "Standard Operating Procedure (SOP)",
+      "validation_mode": "RAW_TEXT",
+      "debug_mode": false,
+      "input_docx_filename": "sop_document.docx",
+      "raw_text_input_filename": "sop_document.txt",
+      "min_content_length": 20,
+      "parent_section_headings": [
+        "Purpose",
+        "Scope",
+        "Procedure",
+        "Responsibilities",
+        "References"
+      ],
+      "mandatory_section_headings": [
+        "Purpose",
+        "Scope",
+        "Procedure",
+        "Responsibilities"
+      ],
+      "prompts": {
+        "sections_validation": {
+          "system_prompt": "You are an expert technical document validator. Analyze the provided content carefully and respond with exactly one of the specified response formats.",
+          "user_prompt_template": "You are validating the content of the '{heading}' section of a {doc_type}.\\n\\nSection text ({word_count} words, {sentence_count} sentences):\\n{text}\\n\\nSection tables ({table_count} table(s)):\\n{tables}\\n\\nContent Analysis:\\n- Contains lists: {has_lists}\\n- Contains numbers/data: {has_numbers}\\n- Contains technical terms: {has_technical_terms}\\n- Quality score: {quality_score}/100\\n\\nAnalyze this section for:\\n1. Content availability: Is there meaningful, substantial content (not just placeholder text)?\\n2. Relevance: Is the provided content specifically relevant to the heading '{heading}', or is it unrelated/filler?\\n3. Completeness: Does the content adequately cover what would be expected in a '{heading}' section?\\n\\nReply with EXACTLY one of these responses:\\n- \\\"{heading}: Content is comprehensive and relevant.\\\"\\n- \\\"{heading}: Content is available but lacks relevance to {heading}.\\\"\\n- \\\"{heading}: Content is available but incomplete for {heading}.\\\"\\n- \\\"{heading}: Missing content for {heading}.\\\""
+        },
+        "raw_text_validation": {
+          "system_prompt": "You are an expert document analyst. Your task is to determine if a given block of raw text contains sufficient and relevant information to create a specific section of a {doc_type}.",
+          "user_prompt_template": "You are an expert document analyst. Your task is to determine if a given block of raw text contains sufficient and relevant information to create a specific section of a {doc_type}.\\n\\nThe target section to be created is:\\n'{heading}'\\n\\nThe raw text provided is:\\n---\\n{text}\\n---\\n\\nBased on the raw text, analyze its content for the following:\\n1. Relevance: Is there information in the text that is directly related to the target section '{heading}'?\\n2. Sufficiency: Is there enough detail in the text to write a meaningful, non-trivial section?\\n\\nReply with EXACTLY one of the following responses:\\n- \\\"{heading}: Sufficient and relevant information is present to create this section.\\\"\\n- \\\"{heading}: Some relevant information is present, but it is likely incomplete.\\\"\\n- \\\"{heading}: The text contains little to no relevant information for this section.\\\"\\n- \\\"{heading}: The text is too generic or lacks the specific details needed for this section.\\\""
+        }
+      }
+    }
+  }
+}
